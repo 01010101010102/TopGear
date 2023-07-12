@@ -8,7 +8,7 @@ class Servicos(models.Model):
         ("ML", "meia_lavagem"),
     ]
     escolha_servico = models.CharField(max_length=25, choices=tipos_servicos, db_column="escolha_servico")
-    veiculos = models.OneToOneField(Veiculo, on_delete=models.SET_NULL)
+    veiculos = models.OneToOneField(Veiculo, on_delete=models.SET_NULL, null=True)
     aviso = models.CharField(max_length=60, db_column="aviso")
     data_inicio = models.DateField()
 

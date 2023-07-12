@@ -2,7 +2,7 @@ from django.db import models
 
 class Cliente(models.Model):
     nome = models.CharField(max_length=30, db_column="nome")
-    telefone = models.PositiveIntegerField(max_length=14, db_column="telefone", null=True)
+    telefone = models.CharField(max_length=15, db_column="telefone", null=True)
     
     def __str__(self):
         return self.nome

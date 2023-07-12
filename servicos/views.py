@@ -2,6 +2,9 @@ from django.shortcuts import render
 from .forms import ServicosForm
 from django.http import HttpResponse
 
+def index(request):
+   return HttpResponse("ola mundo")
+
 def servicos(request):
    
 
