@@ -1,4 +1,8 @@
 from django.shortcuts import render
 
 def index(request):
-   return render(request, "app/Pagina-Inicial.html", {})
+   return render(request, "index.html", {})
+
+def cadastro(request):
+   return render(request, "Sobre.html", {})
+
