@@ -4,6 +4,7 @@ class Cliente(models.Model):
     nome = models.CharField(max_length=30, db_column="nome")
     telefone = models.CharField(max_length=15, db_column="telefone", null=True)
     
+    
     def __str__(self):
         return self.nome
 

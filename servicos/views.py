@@ -9,6 +9,7 @@ def servicos(request):
    
 
    if request.method == "GET":
+        
         form_servico = ServicosForm()
         return render(request, "app/escolha_servico.html", {'form_servico': form_servico,})
    

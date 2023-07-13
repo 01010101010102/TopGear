@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html style="font-size: 16px;" lang="pt"><head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -6,7 +7,7 @@
     <meta name="description" content="">
     <title>Cadastro</title>
     <link rel="stylesheet" href="{% static 'css/nicepage.css' %}" media="screen">
-    <link rel="stylesheet" href="Sobre.css" media="screen">
+    <link rel="stylesheet" href="{% static 'css/Sobre.css' %}" media="screen">
     <script class="u-script" type="text/javascript" src="{% static 'js/jquery.js' %}" defer=""></script>
     <script class="u-script" type="text/javascript" src="{% static 'js/nicepage.js' %}" defer=""></script>
     <meta name="generator" content="Nicepage 5.12.7, nicepage.com">
@@ -20,22 +21,22 @@
 		"@type": "Organization",
 		"name": "Site1",
 		"logo": "images/TopGearlogo..gif"
-}</script>
+  }</script>
     <meta name="theme-color" content="#478ac9">
     <meta property="og:title" content="Sobre">
     <meta property="og:description" content="">
     <meta property="og:type" content="website">
-  <meta data-intl-tel-input-cdn-path="intlTelInput/"></head>
+    <meta data-intl-tel-input-cdn-path="intlTelInput/"></head>
   <body class="u-body u-xl-mode" data-lang="pt"><header class="u-clearfix u-header u-header" id="sec-a67f"><div class="u-clearfix u-sheet u-valign-middle-lg u-valign-middle-md u-valign-middle-sm u-valign-middle-xl u-sheet-1">
         <a href="https://nicepage.com" class="u-image u-logo u-image-1" data-image-width="406" data-image-height="182">
-          <img src="images/TopGearlogo..gif" class="u-logo-image u-logo-image-1">
+          <img src="{% static 'imagens/TopGearlogo..gif' %}" class="u-logo-image u-logo-image-1">
         </a>
         <nav class="u-menu u-menu-dropdown u-offcanvas u-menu-1">
           <div class="menu-collapse" style="font-size: 1rem; letter-spacing: 0px;">
             <a class="u-button-style u-custom-left-right-menu-spacing u-custom-padding-bottom u-custom-top-bottom-menu-spacing u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="#">
               <svg class="u-svg-link" viewBox="0 0 24 24"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#menu-hamburger"></use></svg>
               <svg class="u-svg-content" version="1.1" id="menu-hamburger" viewBox="0 0 16 16" x="0px" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><g><rect y="1" width="16" height="2"></rect><rect y="7" width="16" height="2"></rect><rect y="13" width="16" height="2"></rect>
-</g></svg>
+              </g></svg>
             </a>
           </div>
           <div class="u-nav-container">
@@ -61,29 +62,40 @@
     <section class="u-clearfix u-container-align-center-sm u-image u-shading u-section-1" id="carousel_dff3" data-image-width="2000" data-image-height="1125">
       <div class="u-clearfix u-sheet u-sheet-1">
         <div class="u-form u-radius-32 u-white u-form-1">
-          <form action="https://forms.nicepagesrv.com/v2/form/process" class="u-clearfix u-form-spacing-19 u-form-vertical u-inner-form" source="email" name="form" style="padding: 19px;">
+          <form action="{% url 'cadastro' %}" class="u-clearfix u-form-spacing-19 u-form-vertical u-inner-form" source="email" name="form" style="padding: 19px;" method="POST"> {% csrf_token %}
             <div class="u-form-group">
-              <label for="email-db6f" class="u-label">Nome</label>
-              <input placeholder="Nome" id="email-db6f" name="nome" class="u-border-none u-input u-input-rectangle u-palette-3-light-3 u-radius-10" required="required" type="text">
+              <label for="{{ cliente.nome.id_for_label }}" class="u-label">{{ cliente.nome.label }}</label>
+              
+              {{ cliente.nome }}
+            
             </div>
             <div class="u-form-group u-form-name u-form-group-2">
-              <label for="name-961f" class="u-label">Telefone</label>
-              <input type="text" placeholder="Seu whastApp" id="name-961f" name="telefone" class="u-border-none u-input u-input-rectangle u-palette-3-light-3 u-radius-10">
+              <label for="{{ cliente.telefone.id_for_label }}" class="u-label">{{ cliente.telefone.label }}</label>
+            
+              
+              {{ cliente.telefone }}
+
             </div>
             <div class="u-form-group u-form-group-3">
-              <label for="text-7f00" class="u-label">Placa</label>
-              <input type="text" placeholder="placa" id="text-7f00" name="placa" class="u-border-none u-input u-input-rectangle u-palette-3-light-3 u-radius-10" required="required">
+              <label for="{{ veiculo.placa.id_for_label }}" class="u-label">{{ veiculo.placa.label }}</label>
+            
+              
+              {{ veiculo.placa }}
+              
             </div>
             <div class="u-form-group u-form-group-4">
-              <label for="text-8d9a" class="u-label">Veículo</label>
-              <input type="text" placeholder="Tipo do veiculo" id="text-8d9a" name="tipo_veiculo" class="u-border-none u-input u-input-rectangle u-palette-3-light-3 u-radius-10" required="required">
+              <label for="{{ veiculo.veiculo.id_for_label }}" class="u-label">{{ veiculo.veiculo.label }}</label>
+            
+              
+              {{ veiculo.veiculo }}
+            
             </div>
             <div class="u-align-right u-form-group u-form-submit">
               <a href="#" class="u-active-palette-4-light-2 u-border-none u-btn u-btn-round u-btn-submit u-button-style u-hover-palette-4-light-2 u-palette-3-base u-radius-20 u-btn-1">CADASTRAR</a>
               <input type="submit" value="submit" class="u-form-control-hidden">
             </div>
-            <div class="u-form-send-message u-form-send-success"> Thank you! Your message has been sent. </div>
-            <div class="u-form-send-error u-form-send-message"> Unable to send your message. Please fix errors then try again. </div>
+            <div class="u-form-send-message u-form-send-success"> Obrigado! Seu cadastro foi registrado. </div>
+            <div class="u-form-send-error u-form-send-message"> Houve algum problema com seu formulário. Por favor corríga-os e tente novamente. </div>
             <input type="hidden" value="" name="recaptchaResponse">
             <input type="hidden" name="formServices" value="b94ad4d01004e4548a89ebb9b64f19a0">
           </form>
