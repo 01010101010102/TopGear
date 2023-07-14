@@ -6,6 +6,7 @@
     <meta name="keywords" content="40%, ​Where every ingredient tells a story, $27, $4, View Our Menu, $14, 40%, ​Keep up to date with us">
     <meta name="description" content="">
     <title>Página Inicial</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'css/servico_nicepage.css' %}" media="screen">
     <link rel="stylesheet" href="{% static 'css/servico_Página-Inicial.css' %}" media="screen">
     <script class="u-script" type="text/javascript" src="{% static 'js/servicos_jquery.js' %}" defer=""></script>
@@ -139,27 +140,34 @@
     <section class="u-align-center u-clearfix u-gradient u-section-5" id="sec-0b3d">
       <div class="u-clearfix u-sheet u-sheet-1">
         <div class="u-align-right u-form u-form-1">
-          <form action="{% url 'clientes:cadastro' %}" class="u-clearfix u-form-spacing-15 u-form-vertical u-inner-form" style="padding: 15px;" source="email" name="form" metho="POST">
-            
+
+
+          <form action="{% url 'servicos:servicos' %}" class="u-clearfix u-form-spacing-15 u-form-vertical u-inner-form" style="padding: 15px;" source="text" name="form" method="POST"> {% csrf_token %}
+
             <div class="u-form-group u-form-name u-label-top u-form-group-1">
-              <label for="name-6797" class="u-custom-font u-font-open-sans u-label u-label-1">Serviço</label>
-              <input type="text" placeholder="Serviço" id="name-6797" name="name" class="u-border-2 u-custom-font u-font-open-sans u-input u-input-rectangle u-radius-25 u-input-1" required="">
+              <label for="id_escolha_servico" class="u-custom-font u-font-open-sans u-label u-label-1"  id="id_escolha_servico" >Serviço</label>
+              <select class="form-select form-select-lg mb-3" aria-label="Default select example" name="escolha_servico" required>
+                <option selected>Clique e escolha um Serviço para seu veículo</option>
+                <option value="LC">Lavagem Completa</option>
+                <option value="ML">Meia Talha</option>
+              </select>
             </div>
-            
+          
             <div class="u-form-group u-form-message u-label-top u-form-group-2">
-              <label for="message-6797" class="u-custom-font u-font-open-sans u-label u-label-2">Avisos</label>
-              <textarea placeholder="detalhes sobre serviço" rows="6" cols="50" id="message-6797" name="message" class="u-border-2 u-custom-font u-font-open-sans u-input u-input-rectangle u-radius-25 u-input-2"></textarea>
+              <label for="id_aviso" class="u-custom-font u-font-open-sans u-label u-label-2">Avisos</label>
+              <textarea placeholder="detalhes sobre serviço" rows="6" cols="50" id="id_aviso" name="aviso" class="u-border-2 u-custom-font u-font-open-sans u-input u-input-rectangle u-radius-25 u-input-2"></textarea>
             </div>
-            
+          
             <div class="u-align-center u-form-group u-form-submit u-label-top u-form-group-3">
-              <input type="submit" value="submit" class="u-form-control-hidden">
+              <input type="submit" value="Enviar" class="u-form-control-hidden">
               <a href="#" class="u-active-palette-3-light-2 u-border-none u-btn u-btn-submit u-button-style u-custom-font u-font-open-sans u-grey-90 u-hover-palette-3-light-2 u-btn-1">Submit</a>
             </div>
-            <div class="u-form-send-message u-form-send-success">Thank you! Your message has been sent.</div>
-            <div class="u-form-send-error u-form-send-message">Unable to send your message. Please fix errors then try again.</div>
-            <input type="hidden" value="" name="recaptchaResponse">
-            <input type="hidden" name="formServices" value="b94ad4d01004e4548a89ebb9b64f19a0">
+            
           </form>
+          
+
+
+
         </div>
         <img class="u-image u-image-contain u-image-default u-image-1" src="{% static 'imagens/undraw_join_re_w1lh.svg' %}" alt="" data-image-width="512" data-image-height="532">
       </div>
@@ -215,5 +223,7 @@
         <span>HTML Builder</span>
       </a>. 
     </section>
-  
-</body></html>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+
+  </body>
+</html>

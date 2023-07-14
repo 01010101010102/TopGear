@@ -1,6 +1,5 @@
-"""from django.contrib import admin
-from .models import veiculo, servicos, cliente
+from django.contrib import admin
+from .models import Servicos
 
-admin.site.register(servicos)
-admin.site.register(veiculo)
-admin.site.register(cliente)"""
+admin.site.register(Servicos)
+

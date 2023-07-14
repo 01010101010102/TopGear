@@ -24,12 +24,12 @@
                     <div class="accordion-body">
                         <form action="{% url 'servicos:servicos' %}" method="GET">
                             <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">Seu nome.</label>
-                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            <label for="exampleInputEmail1" class="form-label">Seu nome</label>
+                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="nome">
                             </div>
                             <div class="mb-3">
                             <label for="exampleInputPassword1" class="form-label">Placa</label>
-                            <input type="text" class="form-control" id="exampleInputPassword1">
+                            <input type="text" class="form-control" id="exampleInputPassword1" name="placa">
                             </div>
                             <button type="submit" class="btn btn-primary">Redirecionar</button>
                         </form>

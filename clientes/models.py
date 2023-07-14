@@ -15,9 +15,10 @@ class Veiculo(models.Model):
         ("CM", "CAMINHONETE"),
         ("M", "MOTO"),
     ]
-    veiculo = models.CharField(max_length=3, default="CARRO", choices=tipos_veiculos, db_column="tipo_veiculo")
+    veiculo = models.CharField(max_length=3, default="CC", choices=tipos_veiculos, db_column="tipo_veiculo")
     placa = models.CharField(max_length=8, db_column="placa")
     dono = models.ForeignKey(Cliente, on_delete=models.CASCADE)
+
     
 
     def __str__(self):
