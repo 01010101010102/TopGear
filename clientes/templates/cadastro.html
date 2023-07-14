@@ -62,7 +62,7 @@
     <section class="u-clearfix u-container-align-center-sm u-image u-shading u-section-1" id="carousel_dff3" data-image-width="2000" data-image-height="1125">
       <div class="u-clearfix u-sheet u-sheet-1">
         <div class="u-form u-radius-32 u-white u-form-1">
-          <form action="{% url 'cadastro' %}" class="u-clearfix u-form-spacing-19 u-form-vertical u-inner-form" source="email" name="form" style="padding: 19px;" method="POST"> {% csrf_token %}
+          <form action="{% url 'clientes:cadastro' %}" class="u-clearfix u-form-spacing-19 u-form-vertical u-inner-form" source="email" name="form" style="padding: 19px;" method="POST"> {% csrf_token %}
             <div class="u-form-group">
               <label for="{{ cliente.nome.id_for_label }}" class="u-label">{{ cliente.nome.label }}</label>
               

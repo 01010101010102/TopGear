@@ -44,8 +44,8 @@
           </div>
           <div class="u-nav-container">
             <ul class="u-nav u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="Página-Inicial.html" style="padding: 10px 20px;">Página Inicial</a>
-            </li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="{% url 'cadastro' %}" style="padding: 10px 20px;">Sobre</a>
-            </li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="Contato.html" style="padding: 10px 20px;">Contato</a>
+            </li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="{% url 'clientes:cadastro' %}" style="padding: 10px 20px;">Cadastre-se</a>
+            </li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="{% url 'servicos:servicos' %}" style="padding: 10px 20px;">Serviços</a>
             </li></ul>
           </div>
           <div class="u-nav-container-collapse">
@@ -53,8 +53,8 @@
               <div class="u-inner-container-layout u-sidenav-overflow">
                 <div class="u-menu-close"></div>
                 <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="Página-Inicial.html">Página Inicial</a>
-                </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="{% url 'cadastro' %}">Sobre</a>
-                </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="Contato.html">Contato</a>
+                </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="{% url 'clientes:cadastro' %}">Cadastre-se</a>
+                </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="{% url 'servicos:servicos' %}">Serviços</a>
                 </li></ul>
               </div>
             </div>
@@ -164,7 +164,7 @@
 	C42.677,47.979,42.567,48.054,42.459,48.132z"></path></svg></span>
                   <h2 class="u-align-center u-text u-text-1">Cadastre-se&nbsp;</h2>
                   <h4 class="u-custom-font u-font-arial u-text u-text-2">Para ter acesso aos nossos serviços faça um cadastro rápido e depois faça sua escolha de serviço.</h4>
-                  <a href="#" class="u-active-palette-2-light-2 u-black u-border-none u-btn u-btn-round u-button-style u-hover-palette-2-light-2 u-radius-50 u-text-white u-btn-1">CADASTRE-SE</a>
+                  <a href="{% url 'clientes:cadastro' %}" class="u-active-palette-2-light-2 u-black u-border-none u-btn u-btn-round u-button-style u-hover-palette-2-light-2 u-radius-50 u-text-white u-btn-1">CADASTRE-SE</a>
                 </div>
               </div>
               <div class="u-align-center u-container-style u-image u-layout-cell u-right-cell u-size-30 u-size-xs-60 u-image-1" src="" data-image-width="1080" data-image-height="1080">

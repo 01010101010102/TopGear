@@ -7,13 +7,13 @@ class Servicos(models.Model):
         ("LC", "lavagem_completa"),
         ("ML", "meia_lavagem"),
     ]
-    escolha_servico = models.CharField(max_length=25, choices=tipos_servicos, db_column="escolha_servico")
+    escolha_servico = models.CharField(max_length=2, choices=tipos_servicos, db_column="escolha_servico")
     veiculos = models.OneToOneField(Veiculo, on_delete=models.SET_NULL, null=True)
     aviso = models.CharField(max_length=60, db_column="aviso")
     data_inicio = models.DateField()
 
     def __str__(self):
-        return self.escolha_servico
+        return "(%s, %s, %s)" % (self.escolha_servico, self.aviso, self.data_inicio)
     
 
 #campo para msg de cliente. Ex: fulano vai buscar...

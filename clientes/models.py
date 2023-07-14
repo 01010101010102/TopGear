@@ -21,5 +21,5 @@ class Veiculo(models.Model):
     
 
     def __str__(self):
-        return "(%s, %s)" % (self.placa, self.tipo_veiculo)
+        return "(%s, %s)" % (self.placa, self.veiculo)
     
