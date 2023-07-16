@@ -1,12 +1,13 @@
-from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse
+from django.shortcuts import render, get_object_or_404, redirect
+from django.http import HttpResponse, HttpResponseRedirect
 from django.utils import timezone
+from django.db.models import Q
+from django.urls import reverse
 
 from .models import Servicos
 from clientes.models import Veiculo
 
 
-from clientes.models import Veiculo
 
 def servicos(request):
   
@@ -22,32 +23,36 @@ def servicos(request):
         raise HttpResponse("placa invalida")
       
       
-      return render(request, "servicos/servico_Página-Inicial.html",)
+
+      return render(request, "servicos/servico_Página-Inicial.html" )
     
     
     return render(request, "servicos/login.html", {})
   
    
   if request.method == "POST":
-    print(placa_req)
-    print("-----------")
     try:
       veiculo = get_object_or_404(Veiculo, placa=placa_req)
-    except veiculo.DoesNotExist:
+    except Veiculo.DoesNotExist:
         raise HttpResponse("placa invalida")
     
-    """id_veic = veiculo.id
-    print(id_veic)"""
+    
     data = timezone.now()
     aviso = request.POST.get('aviso')
     escolha = request.POST.get('escolha_servico')
 
-    
-
-    
     servico = Servicos(escolha_servico=escolha, aviso=aviso, data_inicio=data, veiculo=veiculo)
     servico.save()
-    return HttpResponse("ok")
+    return redirect(reverse("clientes:index"))
     
-
+def buscar_telefone_por_placa(placa_):
+  try:
+    veiculo_cliente = Veiculo.objects.get(placa=placa_)
+    telefone_cliente = veiculo_cliente.dono.telefone
+    
+  except Veiculo.DoesNotExist:
+    return HttpResponse("BO")
+  
+  mensagem = f"https://wa.me/{telefone_cliente}"
+  return mensagem
 

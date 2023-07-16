@@ -152,20 +152,24 @@
                 <option value="ML">Meia Talha</option>
               </select>
             </div>
-          
+              
             <div class="u-form-group u-form-message u-label-top u-form-group-2">
               <label for="id_aviso" class="u-custom-font u-font-open-sans u-label u-label-2">Avisos</label>
               <textarea placeholder="detalhes sobre serviço" rows="6" cols="50" id="id_aviso" name="aviso" class="u-border-2 u-custom-font u-font-open-sans u-input u-input-rectangle u-radius-25 u-input-2"></textarea>
             </div>
-          
+  
             <div class="u-align-center u-form-group u-form-submit u-label-top u-form-group-3">
-              <input type="submit" value="Enviar" class="u-form-control-hidden">
-              <a href="#" class="u-active-palette-3-light-2 u-border-none u-btn u-btn-submit u-button-style u-custom-font u-font-open-sans u-grey-90 u-hover-palette-3-light-2 u-btn-1">Submit</a>
+              <input type="submit" value="Enviar" class="u-form-control-hidden">               
+              <a href="#" id="whatsapp-btn" class="u-active-palette-3-light-2 u-border-none u-btn u-btn-submit u-button-style u-custom-font u-font-open-sans u-grey-90 u-hover-palette-3-light-2 u-btn-1">Enviar </a> 
             </div>
             
           </form>
           
-
+          <script>
+            document.getElementById("whatsapp-btn").addEventListener("click", function() {
+              window.open("https://wa.me/559992010132?text=Quando%20estiver%20pronto%20me%20avise!", "_blank");
+            });
+          </script>
 
 
         </div>
@@ -208,6 +212,12 @@
       </div>
     </section>
     
+
+
+   
+
+
+
     
     <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-9b79"><div class="u-clearfix u-sheet u-sheet-1">
         <p class="u-small-text u-text u-text-variant u-text-1">Sample text. Click to select the Text Element.</p>

@@ -1,8 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Cliente, Veiculo
 from .forms import VeiculoForm, ClienteForm
-from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse
+from django.urls import reverse
+from django.http import HttpResponse, HttpResponseRedirect
 
 def index(request):
    return render(request, "index.html", {})
@@ -25,16 +25,18 @@ def cadastro(request):
          test_placa = Veiculo.objects.filter(placa=a)
 
          if test_placa.exists():
-            return HttpResponse("Esse cliente já existe") 
+            return redirect(reverse("clientes:index")) 
          else:
          
             form_cli_instance = form_cli.save()  
             vei_obj = form_vei.save(commit=False)  
 
             vei_obj.dono = form_cli_instance  
-            vei_obj.save()
-
-            return HttpResponse("ok")
+            try:
+               vei_obj.save()
+            except:
+               print("error-----------")
+            return redirect("/clientes/")
       else:
          print(form_vei.errors)
          print(form_cli.errors)
