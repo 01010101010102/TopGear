@@ -6,4 +6,5 @@ app_name = "servicos"
 
 urlpatterns = [
     path("", views.servicos, name="servicos"),
-]
+    path("confirmação/", views.confirmacao, name="confirmacao"),
+    ]
