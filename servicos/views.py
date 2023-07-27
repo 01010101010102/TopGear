@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.utils import timezone
+from django.urls import reverse
 import urllib
 
 from .models import Servicos
@@ -11,7 +12,6 @@ from clientes.models import Veiculo
 def servicos(request):
   
   global placa_req
-  global whatsapp
 
   if request.method == "GET":
     placa_req = request.GET.get('placa')
@@ -21,19 +21,17 @@ def servicos(request):
       try:
         cliente = get_object_or_404(Veiculo, placa=placa_req)
       except Veiculo.DoesNotExist:
-        raise HttpResponse("placa invalida")
+        return HttpResponse("placa invalida")
 
       return render(request, "servicos/servico_Página-Inicial.html", {} )
     
     
     return render(request, "servicos/login.html", {})
-  
-   
-  if request.method == "POST":
-    try:
-      veiculo = get_object_or_404(Veiculo, placa=placa_req)
-    except Veiculo.DoesNotExist:
-      return HttpResponse("placa invalida")
+     
+  elif request.method == "POST":
+    
+    veiculo = get_object_or_404(Veiculo, placa=placa_req)
+    
     
     
     data = timezone.now()
@@ -42,20 +40,35 @@ def servicos(request):
 
     
     servico = Servicos(escolha_servico=escolha, aviso=aviso, data_inicio=data, veiculo=veiculo)
-    servico.save()
-
-    telefone_cliente, nome_cliente = buscar_telefoneNome_pela_placa(placa_req)
-    enviar_msg(placa_req, nome_cliente, telefone_cliente, escolha, aviso)
+    servico.save() 
     
     
-
-    return render(request, "servicos/confirmacao_servico.html", {})
     
-def confirmacao(request):
+    
+    return redirect('servicos:confirmacao')
   
-  return render(request, "confirmacao_servico.html", {})
+def confirmacao(request):
+  if request.method == "GET":
+    try:
+      veiculo_cliente = Veiculo.objects.get(placa=placa_req)
+      telefone_cliente = veiculo_cliente.dono.telefone
+      nome_cliente = veiculo_cliente.dono.nome
+      ultimo_servico = Servicos.objects.filter(veiculo=veiculo_cliente).latest('data_inicio')
+      ultimo_aviso = ultimo_servico.aviso
+      escolha = ultimo_servico.escolha_servico
 
-def buscar_telefoneNome_pela_placa(placa_):
+      mensagem = enviar_msg(placa_req, nome_cliente, telefone_cliente, escolha, ultimo_aviso)
+    
+    except Veiculo.DoesNotExist:
+      return HttpResponse("BO")
+
+  return render(request, "servicos/confirmacao_servico.html", {'zap': mensagem} )
+  
+
+  
+
+
+"""def buscar_telefoneNome_pela_placa(placa_):
   try:
     veiculo_cliente = Veiculo.objects.get(placa=placa_)
     telefone_cliente = veiculo_cliente.dono.telefone
@@ -65,17 +78,11 @@ def buscar_telefoneNome_pela_placa(placa_):
     return HttpResponse("BO")
   
   
-  return telefone_cliente, nome_cliente
+  return telefone_cliente, nome_cliente"""
 
 def enviar_msg(placa, nome, telefone, servico, aviso):
-  texto = f"-------\nplaca:{placa}.\nnome:{nome}.\ntelefone:{telefone}.\nservico:{servico}.\naviso:{aviso}.\n----------\n"
-  
-  
-  msg = urllib.parse.quote(texto)
-  print(texto)
-  print(msg)
-  
+  texto = f"-------\nplaca:{placa}.\nnome:{nome}.\ntelefone:{telefone}.\nservico:{servico}.\naviso:{aviso}.\n----------\n"  
+  msg = urllib.parse.quote(texto)  
   mensagem_zap = f"https://wa.me/559992010132?text={msg}"
-  envio = urllib.request.urlopen(mensagem_zap)
-
-  return envio
+  
+  return mensagem_zap

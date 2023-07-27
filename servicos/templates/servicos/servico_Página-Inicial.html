@@ -139,43 +139,32 @@
     </section>
     <section class="u-align-center u-clearfix u-gradient u-section-5" id="sec-0b3d">
       <div class="u-clearfix u-sheet u-sheet-1">
-        <div class="u-align-right u-form u-form-1">
+        <div class="u-align-right">
 
-
-          <form action="{% url 'servicos:servicos' %}" class="u-clearfix u-form-spacing-15 u-form-vertical u-inner-form" style="padding: 15px;" source="text" name="form" method="POST"> {% csrf_token %}
-
-            <div class="u-form-group u-form-name u-label-top u-form-group-1">
-              <label for="id_escolha_servico" class="u-custom-font u-font-open-sans u-label u-label-1"  id="id_escolha_servico" >Serviço</label>
-              <select class="form-select form-select-lg mb-3" aria-label="Default select example" name="escolha_servico" required>
-                <option selected>Clique e escolha um Serviço para seu veículo</option>
-                <option value="LC">Lavagem Completa</option>
-                <option value="ML">Meia Talha</option>
-              </select>
+          
+          <form action="{% url 'servicos:servicos' %}" method="post">
+            {% csrf_token %}
+            <label for="escolha_id">Serviços</label>
+            <select class="form-select" id="escolha_id" name="escolha_servico" aria-label="Default select example" required>
+              <option selected>Escolha Serviços</option>
+              <option value="LC">Lavagem Completa</option>
+              <option value="ML">Meia Lavagem</option>
+            </select>
+            <div class="mb-3">
+              <label for="exampleFormControlTextarea1" class="form-label">Aviso</label>
+              <textarea class="form-control" id="exampleFormControlTextarea1" name="aviso" rows="3"></textarea>
             </div>
-              
-            <div class="u-form-group u-form-message u-label-top u-form-group-2">
-              <label for="id_aviso" class="u-custom-font u-font-open-sans u-label u-label-2">Avisos</label>
-              <textarea placeholder="detalhes sobre serviço" rows="6" cols="50" id="id_aviso" name="aviso" class="u-border-2 u-custom-font u-font-open-sans u-input u-input-rectangle u-radius-25 u-input-2"></textarea>
+            <div>
+              <button class="btn btn-primary" type="submit">Enviar</button>
             </div>
-  
-            <div class="u-align-center u-form-group u-form-submit u-label-top u-form-group-3">
-              <input type="submit" value="Enviar" class="u-form-control-hidden">               
-              <a href="#" id="whatsapp-btn" class="u-active-palette-3-light-2 u-border-none u-btn u-btn-submit u-button-style u-custom-font u-font-open-sans u-grey-90 u-hover-palette-3-light-2 u-btn-1">Enviar </a> 
-            </div>
-            
           </form>
           
-          <script>
-            document.getElementById("whatsapp-btn").addEventListener("click", function() {
-              window.open("https://wa.me/559992010132?text=Quando%20estiver%20pronto%20me%20avise!", "_blank");
-            });
-          </script>
-
 
         </div>
-        <img class="u-image u-image-contain u-image-default u-image-1" src="{% static 'imagens/undraw_join_re_w1lh.svg' %}" alt="" data-image-width="512" data-image-height="532">
+        <!--<img class="u-image u-image-contain u-image-default u-image-1" src="{% static 'imagens/undraw_join_re_w1lh.svg' %}" alt="" data-image-width="512" data-image-height="532">-->
       </div>
     </section>
+  
     <section class="u-clearfix u-grey-90 u-section-6" id="sec-33fa">
       <div class="u-clearfix u-sheet u-sheet-1">
         <div class="u-expanded-width u-list u-list-1">
