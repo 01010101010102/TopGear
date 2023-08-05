@@ -61,38 +61,37 @@
       </div></header>
     <section class="u-clearfix u-container-align-center-sm u-image u-shading u-section-1" id="carousel_dff3" data-image-width="2000" data-image-height="1125">
       <div class="u-clearfix u-sheet u-sheet-1">
-        <div class="u-form u-radius-32 u-white u-form-1">
-          <form action="{% url 'clientes:cadastro' %}" class="u-clearfix u-form-spacing-19 u-form-vertical u-inner-form" source="email" name="form" style="padding: 19px;" method="POST"> {% csrf_token %}
-            <div class="u-form-group">
+        <div class=" u-radius-32 u-white ">
+          <form action="{% url 'clientes:cadastro' %}" class="u-clearfix "  name="form" style="padding: 19px;" method="POST"> {% csrf_token %}
+            <div >
               <label for="{{ cliente.nome.id_for_label }}" class="u-label">{{ cliente.nome.label }}</label>
               
               {{ cliente.nome }}
             
             </div>
-            <div class="u-form-group u-form-name u-form-group-2">
+            <div >
               <label for="{{ cliente.telefone.id_for_label }}" class="u-label">{{ cliente.telefone.label }}</label>
             
               
               {{ cliente.telefone }}
 
             </div>
-            <div class="u-form-group u-form-group-3">
+            <div >
               <label for="{{ veiculo.placa.id_for_label }}" class="u-label">{{ veiculo.placa.label }}</label>
             
               
               {{ veiculo.placa }}
               
             </div>
-            <div class="u-form-group u-form-group-4">
+            <div >
               <label for="{{ veiculo.veiculo.id_for_label }}" class="u-label">{{ veiculo.veiculo.label }}</label>
             
               
               {{ veiculo.veiculo }}
             
             </div>
-            <div class="u-align-right u-form-group u-form-submit">
-              <a href="{% url 'clientes:cadastro' %}" class="u-active-palette-4-light-2 u-border-none u-btn u-btn-round u-btn-submit u-button-style u-hover-palette-4-light-2 u-palette-3-base u-radius-20 u-btn-1">CADASTRAR</a>
-              <input type="submit" value="submit" class="u-form-control-hidden">
+            <div class="u-align-right">
+              <button type="submit" class="u-border-none u-btn u-btn-round u-button-style"> CADASTRAR </button>
             </div>
           </form>
         </div>

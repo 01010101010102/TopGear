@@ -1,7 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse
 from django.utils import timezone
-from django.urls import reverse
 import urllib
 
 from .models import Servicos
@@ -28,23 +27,15 @@ def servicos(request):
     
     return render(request, "servicos/login.html", {})
      
-  elif request.method == "POST":
-    
+  elif request.method == "POST": 
     veiculo = get_object_or_404(Veiculo, placa=placa_req)
-    
-    
-    
     data = timezone.now()
     aviso = request.POST.get('aviso')
     escolha = request.POST.get('escolha_servico')
 
-    
     servico = Servicos(escolha_servico=escolha, aviso=aviso, data_inicio=data, veiculo=veiculo)
     servico.save() 
-    
-    
-    
-    
+     
     return redirect('servicos:confirmacao')
   
 def confirmacao(request):
@@ -59,26 +50,11 @@ def confirmacao(request):
 
       mensagem = enviar_msg(placa_req, nome_cliente, telefone_cliente, escolha, ultimo_aviso)
     
-    except Veiculo.DoesNotExist:
+    except Veiculo.DoesNotExist and Servicos.DoesNotExist:
       return HttpResponse("BO")
 
-  return render(request, "servicos/confirmacao_servico.html", {'zap': mensagem} )
+    return render(request, "servicos/confirmacao_servico.html", {'zap': mensagem} )
   
-
-  
-
-
-"""def buscar_telefoneNome_pela_placa(placa_):
-  try:
-    veiculo_cliente = Veiculo.objects.get(placa=placa_)
-    telefone_cliente = veiculo_cliente.dono.telefone
-    nome_cliente = veiculo_cliente.dono.nome
-    
-  except Veiculo.DoesNotExist:
-    return HttpResponse("BO")
-  
-  
-  return telefone_cliente, nome_cliente"""
 
 def enviar_msg(placa, nome, telefone, servico, aviso):
   texto = f"-------\nplaca:{placa}.\nnome:{nome}.\ntelefone:{telefone}.\nservico:{servico}.\naviso:{aviso}.\n----------\n"  

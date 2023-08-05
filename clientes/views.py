@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from .models import Veiculo
 from .forms import VeiculoForm, ClienteForm
 
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseBadRequest
 
 
 def index(request):
@@ -22,11 +22,10 @@ def cadastro(request):
 
       if form_vei.is_valid() and form_cli.is_valid():
          a = form_vei.cleaned_data['placa']
-         b = form_cli.cleaned_data['nome']
          test_placa = Veiculo.objects.filter(placa=a)
 
          if test_placa.exists():
-            return redirect("clientes:index") 
+            return HttpResponseBadRequest("Essa placa já está cadastrada. Entre em contato com o adm:")
          else:
          
             form_cli_instance = form_cli.save()  
@@ -34,7 +33,7 @@ def cadastro(request):
             vei_obj.dono = form_cli_instance  
             vei_obj.save()
 
-            return redirect('servicos:servicos', permanent=True)
+            return redirect('servicos:servicos')
       
       else:
          print(form_vei.errors)
